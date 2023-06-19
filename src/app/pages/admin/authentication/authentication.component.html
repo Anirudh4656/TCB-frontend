@@ -1,0 +1,18 @@
+<div class="h-100 container">
+  <div class="row h-100">
+    <div class="col-md-7 d-flex flex-row justify-content-center align-items-center">
+      <div class="flex-column">
+        <h1>Admin Area</h1>
+        <h4>Not admin? Go back to <a href="https://www.thechoicebox.com">www.thechoicebox.com</a></h4>
+      </div>
+      <img src="assets/icons/login.svg" alt="registration" width="30%">
+    </div>
+    <div class="col-md-5 d-flex flex-column justify-content-center align-items-start">
+      <label>Email</label>
+      <input type="email" class="form-control mb-2" [(ngModel)]="loginInfo.emailId">
+      <label>Password</label>
+      <input type="password" class="form-control mb-2" [(ngModel)]="loginInfo.password">
+      <button (click)="login()">Login</button>
+    </div>
+  </div>
+</div>

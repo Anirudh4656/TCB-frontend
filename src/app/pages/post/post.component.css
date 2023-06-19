@@ -1,0 +1,44 @@
+:host {
+    width: 100%;
+    position: relative;
+}
+
+.article {
+    max-width: 980px;
+    width: 98%;
+    margin-right: 3rem;
+}
+
+.padding {
+    padding: 3rem 5rem;
+}
+
+@media only screen and (max-width: 767px) {
+    .padding {
+        padding: 3rem 1rem;
+    }
+    .article {
+        margin-right: 0;
+    }
+    .posts {
+        width: 100%;
+    }
+    /* .flex-direction {
+        flex-direction: column !important;
+    } */
+}
+
+@media only screen and (max-width: 1023px) {
+    .padding {
+        padding: 3rem 1rem;
+    }
+    .article {
+        margin-right: 10px;
+    }
+    .posts {
+        width: 60%;
+    }
+    .flex-direction {
+        flex-direction: column !important;
+    }
+}

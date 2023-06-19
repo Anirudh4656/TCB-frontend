@@ -1,0 +1,24 @@
+footer { font-family: Arial, sans-serif; }
+
+.footer-heading {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.url { color: #ffffff; }
+
+.url:hover { color: #ffc107; }
+
+.social-icon {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+}
+
+.copyright {
+  color: #ffffff4d;
+  font-weight: 600;
+  letter-spacing: .5px;
+}

@@ -1,0 +1,18 @@
+{
+    "/adminApi": {
+        "target": "https://tcb-production-be2c.up.railway.app/api/admin",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/adminApi": ""
+        }
+    },
+    "/publicApi": {
+        "target": "https://tcb-production-be2c.up.railway.app/api/public",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/publicApi": ""
+        }
+    }
+}

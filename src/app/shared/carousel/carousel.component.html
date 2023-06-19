@@ -1,0 +1,7 @@
+<div class="carousel">
+  <ng-container *ngFor="let slide of selectRandomImages(); let i = index">
+    <img [src]="slide.image" [alt]="slide.title" width="100%" height="100%" class="slide" *ngIf="i === currentSlide">
+  </ng-container>
+  <!-- <button class="control prev" (click)="onPreviousClick()"><span class="arrow left"></span></button>
+  <button class="control next" (click)="onNextClick()"><span class="arrow right"></span></button> -->
+</div>

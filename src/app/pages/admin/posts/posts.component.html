@@ -1,0 +1,100 @@
+<section class="p-4 h-100">
+    <section class="d-flex">
+        <section>
+            <h2>Posts
+                <span class="badge rounded-pill bg-primary">{{ (postList$ | async)?.length }}</span>
+            </h2>
+        </section>
+        <span class="space-right"></span>
+        <section>
+            <a class="control-btn" (click)="addClick()"><img src="assets/icons/plus.svg" height="20px" width="20px"> Add new
+            </a>
+        </section>
+    </section>
+    <section class="px-2 py-3" *ngIf="!show">
+        <div class="row">
+            <div class="col-md-3 mb-3" *ngFor="let item of postList$ | async">
+                <mat-card class="w-100">
+                    <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu" width="100%" height="100%">
+                    <mat-card-content>
+                        <h2>{{ item.title }}</h2>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button color="primary" (click)="editClick(item)"><img
+                            src="assets/icons/edit.svg" height="20px" width="20px"> EDIT</button>
+                        <!-- <button mat-button color="primary" [routerLink]="['/admin/sub-category/edit']" [state]="{ data: { action: 'Edit', id: item.id, sub_category: item.sub_category, marker: 'sub-category' }}"><img
+                src="assets/icons/edit.svg" height="20px" width="20px"> EDIT</button> -->
+                        <button mat-button color="warn" (click)="onDelete(item.id)"><img src="assets/icons/delete.svg" height="20px"
+                width="20px"> DELETE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </section>
+    <section class="px-2 py-3" *ngIf="show">
+        <div class="row">
+            <div class="col-md-12 text-end">
+                <button class="btn btn-danger" (click)="show = false">Close</button>
+            </div>
+        </div>
+        <form [formGroup]="createPost">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" formControlName="title" class="form-control " id="title" aria-describedby="title">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" formControlName="description" class="form-control " id="description" aria-describedby="description">
+            </div>
+            <div class="mb-3">
+                <label for="blog_content" class="form-label">Blog content</label>
+                <angular-editor id="blog_content" class="bg-white" [placeholder]="'Enter Content text here...'" formControlName="blog_content" name="content" [config]="editorConfig" imageEndPoint="https://localhost:3000/api/public/upload">
+                </angular-editor>
+            </div>
+            <div class="mb-3">
+                <label for="youtube_video_link" class="form-label">Youtube video link</label>
+                <input type="text" formControlName="youtube_video_link" class="form-control w-50" id="youtube_video_link" aria-describedby="youtube_video_link">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" formControlName="author" class="form-control w-50" id="author" aria-describedby="author">
+            </div>
+            <div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <input type="text" formControlName="tags" class="form-control w-50" id="tags" aria-describedby="tags">
+            </div>
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Category id</label>
+                <select class="form-select w-25" aria-label="Default select example" formControlName="category_id" id="category_id">
+          <option *ngFor="let item of categoryList$ | async" [value]="item.id">{{ item.category }}</option>
+        </select>
+            </div>
+            <div class="mb-3">
+                <label for="sub_category_id" class="form-label">Sub_category id</label>
+                <select class="form-select w-25" aria-label="sub_category_id" formControlName="sub_category_id" id="sub_category_id">
+          <option *ngFor="let item of subCategoryList$ | async" [value]="item.id">{{ item.sub_category }}</option>
+        </select>
+            </div>
+            <div class="mb-3">
+                <label for="type_category_id" class="form-label">Type category id</label>
+                <select class="form-select w-25" aria-label="type_category_id" formControlName="type_category_id" id="type_category_id">
+          <option *ngFor="let item of typeCategoryList$ | async" [value]="item.id">{{ item.type_category }}</option>
+        </select>
+            </div>
+            <div class="mb-3">
+                <label for="likes" class="form-label">Likes</label>
+                <input type="number" formControlName="likes" class="form-control w-25" id="likes" aria-describedby="likes">
+            </div>
+            <div class="mb-3">
+                <label for="comments" class="form-label">Comments</label>
+                <input type="number" formControlName="comments" class="form-control w-25" id="comments" aria-describedby="comments">
+            </div>
+            <div class="mb-3">
+                <input type="file" (change)="onImagePicked($event)">
+            </div>
+
+            <button type="button" class="btn btn-primary" *ngIf="!editMode" (click)="onSubmit()">Submit</button>
+            <button type="button" class="btn btn-primary" *ngIf="editMode" (click)="onUpdate()">Update</button>
+        </form>
+    </section>
+</section>

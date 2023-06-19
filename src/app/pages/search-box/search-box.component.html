@@ -1,0 +1,26 @@
+<section class="d-flex flex-column h-100">
+  <section class="px-5 d-flex flex-direction mt-5">
+    <section class="d-flex flex-column me-2 blog-width">
+      <h3 class="mb-5">SEARCH RESULTS FOR - "{{search}}"</h3>
+      <article class="d-flex flex-direction mb-5" *ngFor="let post of postsList$ | async"
+        [class.d-none]="!post.title.toLowerCase().includes(search.toLowerCase())" style="cursor: pointer;">
+        <img class="me-3 align-middle image" [src]="post.image" [alt]="post.title" [routerLink]="['/post', post.id]">
+        <div class="d-flex flex-column mt-2">
+          <h3 class="fw-bold fs-5 blog-width" [routerLink]="['/post', post.id]" style="letter-spacing: 1px;">
+            {{ post.title }}
+          </h3>
+          <p class="title-wrap fs-6" style="letter-spacing: 1px;">{{ post.description }}</p>
+          <div class="d-flex flex-row">
+            <span class="text-nowrap">{{ post.author }}</span>
+            <span class="px-2">·</span>
+            <span class="text-nowrap">{{ post.views | numSuffix }} view{{ post.views > 1 ? 's' : '' }}</span>
+            <span class="px-2">·</span>
+            <span class="text-nowrap">{{ post.createdAt | dateAgo }}</span>
+            <span class="px-2">·</span>
+            <span class="text-nowarp">{{ post.blog_content.length/265 | number: '1.0-0' }} min read</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </section>
+</section>

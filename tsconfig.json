@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@directive/*": ["src/app/core/directives/*"],
+      "@guard/*": ["src/app/core/guards/*"],
+      "@interceptor/*": ["src/app/core/interceptors/*"],
+      "@pipe/*": ["src/app/core/pipes/*"],
+      "@service/*": ["src/app/core/services/*"],
+      "@custom-validator/*": ["src/app/core/validators/*"],
+      "@model/*": ["src/app/core/models/*"],
+      "@store/*": ["src/app/core/store/*"],
+      "@feature/*": ["src/app/features/*"],
+      "@page/*": ["src/app/pages/*"],
+      "@shared/*": ["src/app/shared/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "strictPropertyInitialization": false
+  }
+}

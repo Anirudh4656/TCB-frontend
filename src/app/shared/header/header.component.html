@@ -1,0 +1,67 @@
+<section class="d-flex topbar">
+    <img src="assets/img/logo.png" alt="The Choice Box" height="60" [routerLink]="['/home']" routerLinkActive="router-link-active">
+    <h1 class="brand m-3">The Chocie box</h1>
+    <span class="ms-auto d-flex align-items-center justify-content-between ms-3">
+    <nav class="d-flex flex-row nav-view">
+      <span [class.d-none]="showAdmin">
+        <span class="px-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu1">MOVIE NEWS</span>
+    <span class="px-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu2">WEBSERIES/TV NEWS</span>
+    <span class="px-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu3">REVIEWS</span>
+    <span class="px-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu4">LIST</span>
+    </span>
+    <span class="px-2 menu-item" [class.d-none]="!_adminAuthService.isUserLoggedIn() || !showAdmin" *ngFor="let item of adminNavMenu" [routerLink]="[item.path]">{{ item.name }}</span>
+    </nav>
+    <span [class.d-none]="showAdmin">
+      <mat-icon (click)="show = !show" style="cursor: pointer;">search</mat-icon>
+      <span class="px-2" [matMenuTriggerFor]="social" style="cursor: pointer;">
+        <mat-icon>rss_feed</mat-icon>
+      </span>
+    </span>
+    <span class="px-2" [class.d-none]="!showAdmin" (click)="_adminAuthService.logout()" style="cursor: pointer;">Logout</span>
+    <span class="ham-icon ms-2" (click)="navHide = !navHide">
+      <mat-icon class="text-light">menu</mat-icon>
+    </span>
+    </span>
+</section>
+<section class="sidebar w-100 h-100 p-5" *ngIf="!navHide">
+    <div class="d-flex justify-content-between align-items-center text-light">
+        <h3 class="m-0">MENU</h3>
+        <mat-icon style="cursor: pointer;" (click)="navHide = !navHide">clear</mat-icon>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="d-flex flex-column text-center">
+            <div class="d-flex flex-column" *ngIf="!showAdmin">
+
+                <span class="py-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu1">MOVIE NEWS</span>
+                <span class="py-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu2">WEBSERIES/TV NEWS</span>
+                <span class="py-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu3">REVIEWS</span>
+                <span class="py-2 menu-item" [routerLink]="" [matMenuTriggerFor]="menu4">LIST</span>
+            </div>
+            <span class="py-2 menu-item" [class.d-none]="!_adminAuthService.isUserLoggedIn() || !showAdmin" *ngFor="let item of adminNavMenu" [routerLink]="[item.path]">{{ item.name }}</span>
+        </div>
+    </div>
+</section>
+<div class="backdrop w-100 p-4" *ngIf="show">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <mat-icon class="backdrop-close" (click)="show = !show">clear</mat-icon>
+        <input class="search-field" placeholder="Search Post" [(ngModel)]="search" (keydown.enter)="searchRecord()" />
+    </div>
+</div>
+<mat-menu #menu1="matMenu" yPosition="below">
+    <button mat-menu-item (click)="navHide = !navHide" *ngFor="let item of subcategoryList$ | async" [routerLink]="['/category', 'Movies',item.sub_category]">{{item.sub_category}}</button>
+</mat-menu>
+<mat-menu #menu2="matMenu" yPosition="below">
+    <button mat-menu-item (click)="navHide = !navHide" *ngFor="let item of subcategoryList$ | async" [routerLink]="['/category', 'Webseries/TV Shows',item.sub_category]">{{item.sub_category}}</button>
+</mat-menu>
+<mat-menu #menu3="matMenu" yPosition="below">
+    <button mat-menu-item (click)="navHide = !navHide" *ngFor="let item of subcategoryList$ | async" [routerLink]="['/category', 'Reviews',item.sub_category]">{{item.sub_category}}</button>
+</mat-menu>
+<mat-menu #menu4="matMenu" yPosition="below">
+    <button mat-menu-item (click)="navHide = !navHide" *ngFor="let item of subcategoryList$ | async" [routerLink]="['/category', 'List',item.sub_category]">{{item.sub_category}}</button>
+</mat-menu>
+<mat-menu #social="matMenu" yPosition="below">
+    <button mat-menu-item><a href="https://www.facebook.com/thechoicebox/">Facebook</a></button>
+    <button mat-menu-item><a href="https://www.instagram.com/thechoicebox/">Instagram</a></button>
+    <button mat-menu-item><a href="https://twitter.com/thechoicebox66">Twitter</a></button>
+    <button mat-menu-item><a href="https://www.youtube.com/c/TheChoiceBox">YouTube</a></button>
+</mat-menu>

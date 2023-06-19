@@ -1,0 +1,14 @@
+<h1>{{data.action}}</h1>
+<input [(ngModel)]="data.category" *ngIf="data.marker === 'category'">
+<input [(ngModel)]="data.sub_category" *ngIf="data.marker === 'sub-category'">
+<input [(ngModel)]="data.type_category" *ngIf="data.marker === 'type-category'">
+<input [(ngModel)]="data.type" *ngIf="data.marker === 'post-type'">
+<div *ngIf="data.marker === 'admin-details'">
+    <label>Name</label><br>
+    <input [(ngModel)]="data.name"><br>
+    <label>Email Id</label><br>
+    <input [(ngModel)]="data.emailId"><br>
+    <label *ngIf="data.action === 'Add'">Password</label><br>
+    <input [(ngModel)]="data.password" *ngIf="data.action === 'Add'">
+</div>
+<button (click)="action(data.action + data.marker)">{{data.action}}</button>

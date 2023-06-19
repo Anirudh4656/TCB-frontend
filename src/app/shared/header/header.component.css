@@ -1,0 +1,8 @@
+:host {
+  width: 100%;
+  position: relative;
+}
+
+@media only screen and (max-width: 575px) {
+  .py-2 { padding: 1rem 0 !important;}
+}

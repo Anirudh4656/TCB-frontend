@@ -1,0 +1,32 @@
+<section class="p-4 h-100">
+  <section class="d-flex">
+    <section>
+      <h2>Type category <span class="badge rounded-pill bg-primary">{{ (typeCategoryList$ | async)?.length }}</span>
+      </h2>
+    </section>
+    <span class="space-right"></span>
+    <section>
+      <a class="control-btn" [routerLink]="['/admin/type-category/add']"
+        [state]="{ data: { action: 'Add', type_category: '', marker: 'type-category' }}"><img
+          src="assets/icons/plus.svg" height="20px" width="20px"> Add new</a>
+    </section>
+  </section>
+  <section class="px-2 py-3">
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let item of typeCategoryList$ | async">
+        <mat-card class="w-100">
+          <mat-card-content>
+            <h1>{{ item.type_category }}</h1>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary" [routerLink]="['/admin/type-category/edit']"
+              [state]="{ data: { action: 'Edit', id: item.id, type_category: item.type_category, marker: 'type-category' }}"><img
+                src="assets/icons/edit.svg" height="20px" width="20px"> EDIT</button>
+            <button mat-button color="warn" (click)="onDelete(item.id)"><img src="assets/icons/delete.svg" height="20px"
+                width="20px"> DELETE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</section>
