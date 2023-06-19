@@ -1,6 +1,6 @@
 {
     "/adminApi": {
-        "target": "https://tcb-production-be2c.up.railway.app/api/admin",
+        "target": "http://www.api.thechoicebox.com/admin",
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
@@ -8,7 +8,7 @@
         }
     },
     "/publicApi": {
-        "target": "https://tcb-production-be2c.up.railway.app/api/public",
+        "target": "http://www.api.thechoicebox.com/public",
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
