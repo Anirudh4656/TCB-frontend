@@ -5,8 +5,8 @@
 // };
 export const environment = {
   production: true,
-  ADMIN_API_URL: 'http://www.api.thechoicebox.com/admin',
-  PUBLIC_API_URL: 'http://www.api.thechoicebox.com/public'
+  ADMIN_API_URL: 'http://www.api.thechoicebox.com/api/admin',
+  PUBLIC_API_URL: 'http://www.api.thechoicebox.com/api/public'
 };
 // export const environment = {
 //   production: true,
