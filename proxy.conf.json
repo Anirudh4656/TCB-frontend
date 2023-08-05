@@ -1,6 +1,6 @@
 {
     "/adminApi": {
-        "target": "http://www.api.thechoicebox.com/api/admin",
+        "target": "https://www.api.thechoicebox.com/api/admin",
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
@@ -8,7 +8,7 @@
         }
     },
     "/publicApi": {
-        "target": "http://www.api.thechoicebox.com/api/public",
+        "target": "https://www.api.thechoicebox.com/api/public",
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {

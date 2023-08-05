@@ -12,10 +12,7 @@ import { LogoutAction } from '../store/action/logout.action';
 })
 export class AdminAuthService {
 
-  /**
-   * @created by Avishek Datta Ray on Jul 11, 2021
-   * @project The Choice Box
-  */
+
 
   private readonly url: string = environment.ADMIN_API_URL;
   private authStatusListener = new Subject<boolean>();

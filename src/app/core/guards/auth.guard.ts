@@ -8,11 +8,6 @@ import { NotificationService } from '@service/notification.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
-  /**
-   * @created by Avishek Datta Ray on Jul 11, 2021
-   * @project The Choice Box
-  */
  
   constructor(private _adminAuthService: AdminAuthService, private router: Router, private _notificationService: NotificationService) {}
 
