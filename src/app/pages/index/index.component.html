@@ -43,15 +43,18 @@
       </article>
     </section>
     <section>
+      
       <div *ngIf="(categoryList$ | async)?.length">
         <h5 class="post-heading">RECOMMENDED CATEGORIES</h5>
         <div class="d-flex flex-row flex-wrap">
-          <div class="text-center p-2 me-2 mb-2 chips" [routerLink]="['/category', category.category]"
+          <div class="text-center p-2 me-2 mb-2 chips" [routerLink]="['/category', 'Movies',]"
             *ngFor="let category of categoryList$ | async">
             {{ category.category }}</div>
         </div>
         <hr>
       </div>
+
+      
       <div *ngIf="postsList.length">
         <article class="d-flex flex-column mb-4" *ngFor="let post of postsList | slice: 6:9"
           style="cursor: pointer;">

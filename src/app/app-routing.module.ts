@@ -10,6 +10,10 @@ const routes: Routes = [
   { path: 'home', component: IndexComponent },
   { path: 'post/:id', component: PostComponent },
   { path: 'category/:category/:sub_category',component: CategoryPostComponent },
+  {
+    path: 'post/:id/:slug',
+    component: PostComponent,
+  },
   { path: 'search/:keyword', component: SearchBoxComponent },
   { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(getModule => getModule.AdminModule) }
 ];

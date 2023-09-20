@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap ,Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import { GetPostsModel } from '@model/public/posts/get-posts.model';
@@ -15,7 +15,7 @@ import { HttpClientService } from '@service/http-client.service';
 })
 export class PostComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private store: Store, public sanitizer: DomSanitizer,
+  constructor(private activatedRoute: ActivatedRoute, private store: Store,private router:Router, public sanitizer: DomSanitizer,
     private _http: HttpClientService) { }
 
   @Select(PostsState.getPost) post$: Observable<GetPostsModel>;
@@ -30,12 +30,30 @@ export class PostComponent implements OnInit {
       if(paramMap.has('id')) {
         this.postID = paramMap.get('id');
       }
+      
       this._http.getSinglePost(this.postID).subscribe(response => {
+       
         this.post = response?.data;
+        this.setSlug();
         this.safeLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.post.youtube_video_link.replace('watch?v=', 'embed/'));
+       
       });
       this._http.increasePostView(this.postID);
       this.store.dispatch(new GetAllPosts());
+      
     });
+  }
+  dasherize(string: string) {
+    return string.replace(/[ ]/g, '-').toLowerCase();
+  }
+  setSlug() {
+    const postSlug = this.activatedRoute.snapshot.params.slug;
+    if (!postSlug) {
+      console.log(`i am in slug ${this.post.title}`)
+      let slug = this.dasherize(this.post.title);
+      this.router
+        .navigate([slug], { relativeTo: this.activatedRoute, replaceUrl: true })
+        .then();
+    }
   }
 }
