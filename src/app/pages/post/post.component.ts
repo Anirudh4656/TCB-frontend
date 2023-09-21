@@ -44,7 +44,7 @@ export class PostComponent implements OnInit {
     });
   }
   dasherize(string: string) {
-    return string.replace(/[ ]/g, '-').toLowerCase();
+    return string.replace(/[ ( )]/g, '-');
   }
   setSlug() {
     const postSlug = this.activatedRoute.snapshot.params.slug;
